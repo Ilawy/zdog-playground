@@ -1,0 +1,8 @@
+.container,
+.container button {
+  text-align: center;
+  font: 1em sans-serif;
+}
+.logo {
+  width: 150px;
+}

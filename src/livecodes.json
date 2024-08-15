@@ -1,0 +1,32 @@
+{
+  "title": "zzzdog-demo",
+  "description": "",
+  "head": "<meta charset=\"UTF-8\" />\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />",
+  "htmlAttrs": "lang=\"en\" class=\"\"",
+  "tags": [],
+  "activeEditor": "script",
+  "markup": {
+    "language": "html",
+    "content": "<canvas class=\"zdog-canvas\" width=\"240\" height=\"240\"></canvas>\n"
+  },
+  "style": {
+    "language": "css",
+    "content": ".container,\n.container button {\n  text-align: center;\n  font: 1em sans-serif;\n}\n.logo {\n  width: 150px;\n}\n"
+  },
+  "script": {
+    "language": "typescript",
+    "content": "import Zdog from 'zdog'\nimport { animate as motion, spring } from 'motion'\nimport chroma from 'chroma-js'\n\nconst scale = chroma.scale([\"red\", \"blue\"])\nconst scale2 = chroma.scale([\"blue\", \"red\"])\nlet color = scale(0).hex()\n\n\n\n\nlet illo = new Zdog.Illustration({\n  // set canvas with selector\n  element: '.zdog-canvas',\n});\n\nlet can = new Zdog.Cylinder({\n  addTo: illo,\n  diameter: 80,\n  length: 120,\n  stroke: false,\n  color: color,\n  frontFace: '#EA0',\n  backface: '#636',\n});\n\nfunction animate() {\n  // rotate illo each frame\n  // illo.rotate.y += 0.03;\n  illo.rotate.x += 0.003\n  can.color = color\n  illo.updateRenderGraph();\n  // animate next frame\n  requestAnimationFrame( animate );\n}\n// start animation\nanimate();\n\nmotion(prog=>{\n  color = scale(prog).hex()\n   illo.rotate.y += prog* 0.1;\n}, {\n  duration: 1,\n  repeat: Infinity,\n  direction: \"alternate\",\n  easing: \"linear\"\n  // easing: spring({ velocity: 0.025 })\n})\n\n\nillo.updateRenderGraph();\n"
+  },
+  "stylesheets": [],
+  "scripts": [],
+  "cssPreset": "",
+  "processors": [],
+  "customSettings": {},
+  "imports": {},
+  "types": {},
+  "tests": {
+    "language": "typescript",
+    "content": ""
+  },
+  "version": "35"
+}
